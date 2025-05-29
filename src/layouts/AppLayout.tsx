@@ -5,7 +5,7 @@ export default function App() {
     <>
       <header>
         <nav>
-          <Link to="/">Home</Link> | <Link to="/about">About</Link> |{" "}
+          <Link to="/">Home</Link> | <Link to="/workflow">Workflow</Link> |{" "}
           <Link to="/logout">Logout</Link>
         </nav>
       </header>

@@ -1,24 +1,24 @@
 import type { RouteObject } from "react-router";
 import AppLayout from "@/layouts/AppLayout";
 import Home from "@/pages/protected/Home";
-import About from "@/pages/protected/About";
 import LogoutPage from "@/pages/protected/Logout";
+import WorkflowPage from "@/pages/protected/Workflow";
 
 export const protectedRoutes: RouteObject = {
   path: "/",
   element: <AppLayout />,
   children: [
     {
-      index: true, // Default path `/`
+      index: true,
       element: <Home />,
-    },
-    {
-      path: "about",
-      element: <About />,
     },
     {
       path: "logout",
       element: <LogoutPage />,
+    },
+    {
+      path: "workflow",
+      element: <WorkflowPage />,
     },
   ],
 };

@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "./counterSlice";
 import authReducer from "./authSlice";
+import dragNodeReducer from "./dragNodeSlice";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     counter: counterReducer,
+    dragNode: dragNodeReducer,
   },
 });
 
