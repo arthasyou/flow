@@ -8,15 +8,14 @@ export interface NodeTypeOption {
 }
 
 const nodeTypes: NodeTypeOption[] = [
-  { type: "start", label: "任务节点" },
-  { type: "start", label: "判断节点" },
+  { type: "start", label: "开始节点" },
+  { type: "end", label: "结束节点" },
 ];
 
 export default function NodeSidebar() {
   const dispatch = useDispatch();
 
   const onDragStart = (event: React.DragEvent, nodeType: CustomNodeType) => {
-    console.log("Dragging node type:", nodeType);
     dispatch(setType(nodeType));
     event.dataTransfer.effectAllowed = "move";
   };

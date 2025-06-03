@@ -1,7 +1,7 @@
 import { Handle, Position, type NodeProps } from "@xyflow/react";
-import type { StartNodeOption } from "./types";
+import type { EndNodeOption } from "./types";
 
-export function StartNode({ data, selected }: NodeProps<StartNodeOption>) {
+export function EndNode({ data, selected }: NodeProps<EndNodeOption>) {
   return (
     <div
       className={`rounded border p-2 bg-white shadow ${
