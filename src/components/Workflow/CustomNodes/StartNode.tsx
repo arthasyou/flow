@@ -1,8 +1,8 @@
 import { Handle, Position, type NodeProps } from "@xyflow/react";
-import type { StartNode } from "./types";
+import type { StartNodeOption } from "./types";
 
 // biome-ignore lint/suspicious/noRedeclare: <explanation>
-export function StartNode({ data, selected }: NodeProps<StartNode>) {
+export function StartNode({ data, selected }: NodeProps<StartNodeOption>) {
   return (
     <div
       className={`rounded border p-2 bg-white shadow ${

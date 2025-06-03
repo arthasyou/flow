@@ -1,7 +1,6 @@
-import type { Node, BuiltInNode } from "@xyflow/react";
+import type { Node } from "@xyflow/react";
 
-export type StartNode = Node<
+export type StartNodeOption = Node<
   { label: string; description: string; input: string },
   "start"
 >;
-export type AppNode = BuiltInNode | StartNode;

@@ -1,20 +1,30 @@
 import { useDispatch } from "react-redux";
 import { setType } from "@/store/dragNodeSlice";
+import type { CustomNodeType } from "./CustomNodes";
 
-const nodeTypes = [
-  { type: "task", label: "任务节点" },
-  { type: "decision", label: "判断节点" },
+export interface NodeTypeOption {
+  type: CustomNodeType;
+  label: string;
+}
+
+const nodeTypes: NodeTypeOption[] = [
+  { type: "start", label: "任务节点" },
+  { type: "start", label: "判断节点" },
 ];
 
 export default function NodeSidebar() {
   const dispatch = useDispatch();
 
-  const onDragStart = (event: React.DragEvent, nodeType: string) => {
+  const onDragStart = (event: React.DragEvent, nodeType: CustomNodeType) => {
+    console.log("Dragging node type:", nodeType);
     dispatch(setType(nodeType));
     event.dataTransfer.effectAllowed = "move";
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent, nodeType: string) => {
+  const handleKeyDown = (
+    event: React.KeyboardEvent,
+    nodeType: CustomNodeType
+  ) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       // 也可以触发添加到画布或其他交互

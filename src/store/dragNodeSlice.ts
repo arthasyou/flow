@@ -1,18 +1,19 @@
+import type { CustomNodeType } from "@/components/Workflow/CustomNodes";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 interface DndState {
-  type: string | null;
+  type: CustomNodeType;
 }
 
 const initialState: DndState = {
-  type: null,
+  type: "start",
 };
 
 export const dragNodeSlice = createSlice({
   name: "dragNode",
   initialState,
   reducers: {
-    setType: (state, action: PayloadAction<string | null>) => {
+    setType: (state, action: PayloadAction<CustomNodeType>) => {
       state.type = action.payload;
     },
   },
