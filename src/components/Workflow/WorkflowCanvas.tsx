@@ -12,6 +12,7 @@ import {
   type Connection,
   type Edge,
   type Node,
+  type NodeTypes,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import NodeSidebar from "./NodeSidebar";
@@ -19,8 +20,10 @@ import { useSelector } from "react-redux";
 import type { RootState } from "@/store";
 import NodeConfigPanel from "./NodeConfigPanel";
 import WorkflowToolbar from "./WorkflowToolbar";
+import type { AppNode } from "./CustomNodes/types";
+import { StartNode } from "./CustomNodes/StartNode";
 
-const initialNodes: Node[] = [
+const initialNodes: AppNode[] = [
   {
     id: "1",
     type: "default",
@@ -30,6 +33,13 @@ const initialNodes: Node[] = [
 ];
 
 const initialEdges: Edge[] = [];
+
+// Make sure to import StartNode from its file
+
+const nodeTypes = {
+  start: StartNode,
+  // Add any of your custom nodes here!
+} satisfies NodeTypes;
 
 let id = 2;
 const getId = () => `${id++}`;
@@ -46,7 +56,7 @@ function InnerCanvas() {
     setSelectedNodeId(node.id);
   }, []);
 
-  const handleLoad = (data: { nodes: Node[]; edges: Edge[] }) => {
+  const handleLoad = (data: { nodes: AppNode[]; edges: Edge[] }) => {
     setNodes(data.nodes);
     setEdges(data.edges);
   };
@@ -73,11 +83,11 @@ function InnerCanvas() {
         y: event.clientY - (bounds?.top ?? 0),
       });
 
-      const newNode: Node = {
+      const newNode: AppNode = {
         id: getId(),
-        type: "default",
+        type: "start",
         position,
-        data: { label: `${nodeType} 节点` },
+        data: { label: `${nodeType} 节点`, description: "xxx", input: "ing" },
       };
 
       setNodes((nds) => nds.concat(newNode));
@@ -106,6 +116,7 @@ function InnerCanvas() {
           <ReactFlow
             nodes={nodes}
             edges={edges}
+            nodeTypes={nodeTypes}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
