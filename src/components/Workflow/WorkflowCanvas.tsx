@@ -4,14 +4,14 @@ import {
   Background,
   Controls,
   MiniMap,
-  addEdge,
   useEdgesState,
   useNodesState,
   useReactFlow,
   ReactFlowProvider,
-  type Connection,
   type Edge,
   type Node,
+  type OnConnect,
+  MarkerType,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import NodeSidebar from "./NodeSidebar";
@@ -55,9 +55,22 @@ function InnerCanvas() {
     setEdges(data.edges);
   };
 
-  const onConnect = useCallback(
-    (connection: Connection) => {
-      setEdges((eds) => addEdge(connection, eds));
+  const onConnect: OnConnect = useCallback(
+    (connection) => {
+      console.log("连接事件参数：", connection);
+
+      // 构造一个带箭头的新 edge
+      const newEdge = {
+        ...connection,
+        id: `${connection.source}->${connection.target}`,
+        markerEnd: {
+          type: MarkerType.ArrowClosed,
+          color: "#005cff", // 你喜欢什么颜色都行
+        },
+        animated: false,
+      };
+
+      setEdges((edges) => [...edges, newEdge]);
     },
     [setEdges]
   );
