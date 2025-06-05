@@ -11,7 +11,6 @@ export default function Home() {
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold">{t("welcome")}</h1>
-
       <div className="mt-4 space-x-4">
         <button
           type="button"

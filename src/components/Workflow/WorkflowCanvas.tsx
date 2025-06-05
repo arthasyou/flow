@@ -21,26 +21,26 @@ import NodeConfigPanel from "./NodeConfigPanel";
 import WorkflowToolbar from "./WorkflowToolbar";
 import { customNodeRegistry, type AppNode } from "./CustomNodes";
 import { getInitialNodeData } from "@/utils/workflowStorage";
-
-const initialNodes: AppNode[] = [
-  {
-    id: "1",
-    type: "default",
-    data: { label: "开始节点" },
-    position: { x: 100, y: 100 },
-  },
-];
-
-const initialEdges: Edge[] = [];
+import { initialNodes, initialEdges } from "@/data/workflow/initData"; // Adjust the import path as necessary
 
 // Make sure to import StartNode from its file
 
 let id = 2;
 const getId = () => `${id++}`;
 
-function InnerCanvas() {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+function InnerCanvas({
+  uuid,
+  initialData,
+}: {
+  readonly uuid: string;
+  readonly initialData: { readonly nodes: AppNode[]; readonly edges: Edge[] };
+}) {
+  const [nodes, setNodes, onNodesChange] = useNodesState(
+    initialData.nodes || initialNodes
+  );
+  const [edges, setEdges, onEdgesChange] = useEdgesState(
+    initialData.edges || initialEdges
+  );
   const reactFlowInstance = useReactFlow();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const nodeType = useSelector((state: RootState) => state.dragNode.type);
@@ -49,11 +49,6 @@ function InnerCanvas() {
   const onNodeClick = useCallback((_event: React.MouseEvent, node: Node) => {
     setSelectedNodeId(node.id);
   }, []);
-
-  const handleLoad = (data: { nodes: AppNode[]; edges: Edge[] }) => {
-    setNodes(data.nodes);
-    setEdges(data.edges);
-  };
 
   const onConnect: OnConnect = useCallback(
     (connection) => {
@@ -108,11 +103,7 @@ function InnerCanvas() {
     <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
       {/* 顶部工具栏 */}
       <div style={{ flexShrink: 0 }}>
-        <WorkflowToolbar
-          nodesJson={JSON.stringify(nodes)}
-          edgesJson={JSON.stringify(edges)}
-          onLoad={handleLoad}
-        />
+        <WorkflowToolbar uuid={uuid} nodes={nodes} edges={edges} />
       </div>
 
       {/* 主体部分 */}
@@ -148,10 +139,25 @@ function InnerCanvas() {
   );
 }
 
-export default function WorkflowCanvas() {
+export default function WorkflowCanvas({
+  uuid,
+  initialData,
+}: {
+  readonly uuid: string;
+  readonly initialData: {
+    readonly nodes: readonly AppNode[];
+    readonly edges: readonly Edge[];
+  };
+}) {
   return (
     <ReactFlowProvider>
-      <InnerCanvas />
+      <InnerCanvas
+        uuid={uuid}
+        initialData={{
+          nodes: [...initialData.nodes],
+          edges: [...initialData.edges],
+        }}
+      />
     </ReactFlowProvider>
   );
 }
