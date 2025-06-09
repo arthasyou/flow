@@ -1,16 +1,6 @@
-# React + Vite Template
+# React Workflow
 
-This is a minimal template for building React 19 apps with Vite, TypeScript, and SWC.
-
-## 🚀 Getting Started
-
-Create a new project using `degit`:
-
-```bash
-npx degit arthasyou/react-vite-template my-app
-cd my-app
-pnpm install
-```
+This is a production-ready project for building and managing visual workflows using React 19, Vite, TypeScript, and SWC.
 
 ### Set up environment variables
 
@@ -40,7 +30,9 @@ Then run the dev server:
 pnpm dev
 ```
 
-## 📦 Includes
+## 📦 Tech Stack
+
+This project uses the following technologies:
 
 - React 19 + ReactDOM
 - Vite 6
@@ -83,3 +75,7 @@ my-app/
 - `.env.production` — for production builds (`vite --mode production`)
 
 Environment variables are loaded automatically by Vite depending on the mode.
+
+## ✅ Project Status
+
+This project is actively maintained and serves as the frontend for the visual workflow editor.
