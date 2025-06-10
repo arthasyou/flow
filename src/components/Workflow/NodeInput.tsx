@@ -1,4 +1,4 @@
-import type { DataPayload } from "./CustomNodes/dataPaylaod";
+import type { DataPayload } from "./dataPaylaod";
 
 interface NodeInputProps {
 	input: DataPayload;

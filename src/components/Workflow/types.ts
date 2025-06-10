@@ -1,5 +1,5 @@
 import type { Node } from "@xyflow/react";
-import type { DataPayload } from "./CustomNodes/dataPaylaod";
+import type { DataPayload } from "./dataPaylaod";
 
 /**
  * 通用字段：所有节点都会有
