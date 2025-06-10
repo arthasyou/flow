@@ -1,7 +1,8 @@
 import { Handle, Position, type NodeProps } from "@xyflow/react";
-import type { StartNodeOption } from "./types";
+import type { InputNodeOption } from "./types";
+import NodeInput from "../NodeInput"; // 确保路径正确
 
-export function StartNode({ data, selected }: NodeProps<StartNodeOption>) {
+export function InputNode({ data, selected }: NodeProps<InputNodeOption>) {
 	return (
 		<div
 			className={`rounded border p-1 bg-white shadow ${
@@ -19,13 +20,7 @@ export function StartNode({ data, selected }: NodeProps<StartNodeOption>) {
 				<label htmlFor="input-params" className="text-[10px] text-gray-600">
 					输入参数：
 				</label>
-				<input
-					id="input-params"
-					type="text"
-					className="w-full border px-0.5 py-0.5 text-[10px]"
-					value={data.payload.input}
-					readOnly // 如果后续要实现可编辑，可去掉 readonly 并添加 onChange 事件
-				/>
+				<NodeInput input={data.payload.input} />
 			</div>
 
 			<Handle type="target" position={Position.Left} />

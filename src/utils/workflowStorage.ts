@@ -22,7 +22,10 @@ export function getInitialNodeData(type?: string): any {
 			return {
 				label: "开始节点",
 				payload: {
-					input: "",
+					input: {
+						kind: "Single",
+						data: { type: "Text", value: "你好，世界" },
+					},
 				},
 			};
 		default:

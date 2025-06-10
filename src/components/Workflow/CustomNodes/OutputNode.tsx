@@ -1,7 +1,7 @@
 import { Handle, Position, type NodeProps } from "@xyflow/react";
-import type { EndNodeOption } from "./types";
+import type { OutputNodeOption } from "./types";
 
-export function EndNode({ data, selected }: NodeProps<EndNodeOption>) {
+export function OutputNode({ data, selected }: NodeProps<OutputNodeOption>) {
 	return (
 		<div
 			className={`rounded border p-2 bg-white shadow ${
@@ -23,7 +23,7 @@ export function EndNode({ data, selected }: NodeProps<EndNodeOption>) {
 					id="input-params"
 					type="text"
 					className="w-full border px-1 py-0.5 text-xs"
-					value={data.payload.input}
+					value={data.payload.output}
 					readOnly // 如果后续要实现可编辑，可去掉 readonly 并添加 onChange 事件
 				/>
 			</div>

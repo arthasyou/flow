@@ -1,14 +1,16 @@
-import type { BuiltInNode, NodeTypes } from "@xyflow/react";
-import { StartNode } from "./StartNode";
+import type { NodeTypes } from "@xyflow/react";
+import { InputNode } from "./InputNode";
 import type { CustomNodeOption } from "./types";
-import { EndNode } from "./EndNode";
+import { OutputNode } from "./OutputNode";
 import { BranchNode } from "./BranchNode";
+import { IndentityNode } from "./Indentity";
 
-export type AppNode = BuiltInNode | CustomNodeOption;
+export type AppNode = CustomNodeOption;
 
 export const customNodeRegistry = {
-	start: StartNode,
-	end: EndNode,
+	input: InputNode,
+	output: OutputNode,
+	indentity: IndentityNode,
 	branch: BranchNode,
 } satisfies NodeTypes;
 
