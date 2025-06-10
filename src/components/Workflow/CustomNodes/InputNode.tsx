@@ -1,5 +1,5 @@
 import { Handle, Position, type NodeProps } from "@xyflow/react";
-import type { InputNodeOption } from "./types";
+import type { InputNodeOption } from "../types";
 import NodeInput from "../NodeInput"; // 确保路径正确
 
 export function InputNode({ data, selected }: NodeProps<InputNodeOption>) {

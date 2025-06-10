@@ -1,11 +1,11 @@
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export function getInitialNodeData(type?: string): any {
 	switch (type) {
-		case "text":
+		case "prompt":
 			return {
 				label: "文本节点",
 				payload: {
-					text: "",
+					template: "模版内容",
 				},
 			};
 		case "branch":
@@ -13,14 +13,15 @@ export function getInitialNodeData(type?: string): any {
 				label: "条件判断",
 				payload: {
 					branches: [
-						{ condition: "条件1", label: "分支1" },
-						{ condition: "条件2", label: "分支2" },
+						{ condition: "A", node: "A" },
+						{ condition: "B", node: "B" },
 					],
+					default: "C",
 				},
 			};
-		case "start":
+		case "input":
 			return {
-				label: "开始节点",
+				label: "输入节点",
 				payload: {
 					input: {
 						kind: "Single",

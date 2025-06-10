@@ -1,10 +1,10 @@
 import { Handle, Position, type NodeProps } from "@xyflow/react";
-import type { IndentityNodeOption } from "./types";
+import type { IdentityNodeOption } from "../types";
 
-export function IndentityNode({
+export function IdentityNode({
 	data,
 	selected,
-}: NodeProps<IndentityNodeOption>) {
+}: NodeProps<IdentityNodeOption>) {
 	return (
 		<div
 			className={`rounded border p-2 bg-white shadow ${

@@ -10,7 +10,8 @@ export interface NodeTypeOption {
 const nodeTypes: NodeTypeOption[] = [
 	{ type: "input", label: "输入" },
 	{ type: "output", label: "输出" },
-	{ type: "indentity", label: "传输复制" },
+	{ type: "identity", label: "传输复制" },
+	{ type: "prompt", label: "提示节点" },
 	{ type: "branch", label: "分支节点" },
 ];
 

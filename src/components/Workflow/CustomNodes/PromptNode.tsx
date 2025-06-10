@@ -1,7 +1,7 @@
 import { Handle, Position, type NodeProps } from "@xyflow/react";
-import type { OutputNodeOption } from "../types";
+import type { PromptNodeOption } from "../types";
 
-export function OutputNode({ data, selected }: NodeProps<OutputNodeOption>) {
+export function PromptNode({ data, selected }: NodeProps<PromptNodeOption>) {
 	return (
 		<div
 			className={`rounded border p-2 bg-white shadow ${
@@ -17,13 +17,13 @@ export function OutputNode({ data, selected }: NodeProps<OutputNodeOption>) {
 			{/* 新增输入框，用于展示或输入 data.input */}
 			<div className="mt-2">
 				<label htmlFor="input-params" className="text-xs text-gray-600">
-					输入参数：
+					模版
 				</label>
 				<input
 					id="input-params"
 					type="text"
 					className="w-full border px-1 py-0.5 text-xs"
-					value={data.payload.output}
+					value={data.payload.template}
 					readOnly // 如果后续要实现可编辑，可去掉 readonly 并添加 onChange 事件
 				/>
 			</div>

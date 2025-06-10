@@ -10,7 +10,7 @@ const NodeInput: React.FC<NodeInputProps> = ({ input }) => {
 
 		switch (single.type) {
 			case "Text":
-				return <input type="text" defaultValue={single.value} />;
+				return <div>{single.value}</div>;
 			case "FilePath":
 				return (
 					<div>

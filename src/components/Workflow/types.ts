@@ -1,5 +1,5 @@
 import type { Node } from "@xyflow/react";
-import type { DataPayload } from "./dataPaylaod";
+import type { DataPayload } from "./CustomNodes/dataPaylaod";
 
 /**
  * 通用字段：所有节点都会有
@@ -19,16 +19,20 @@ type NodeData<T> = CommonNodeData & {
 /**
  * 各类型节点专属字段
  */
-type InputNodeData = {
+export type InputNodeData = {
 	input: DataPayload;
 };
 
-type OutputNodeData = {
+export type OutputNodeData = {
 	output: string;
 };
 
-type BranchNodeData = {
-	branches: { condition: string; label: string }[];
+export type BranchNodeData = {
+	branches: { condition: string; node: string }[];
+};
+
+export type PromptNodeData = {
+	template: string;
 };
 
 /**
@@ -37,11 +41,13 @@ type BranchNodeData = {
 
 export type InputNodeOption = Node<NodeData<InputNodeData>, "input">;
 export type OutputNodeOption = Node<NodeData<OutputNodeData>, "output">;
-export type IndentityNodeOption = Node<NodeData<null>, "output">;
+export type IdentityNodeOption = Node<NodeData<null>, "identity">;
 export type BranchNodeOption = Node<NodeData<BranchNodeData>, "branch">;
+export type PromptNodeOption = Node<NodeData<PromptNodeData>, "prompt">;
 
 export type CustomNodeOption =
 	| InputNodeOption
 	| OutputNodeOption
-	| IndentityNodeOption
-	| BranchNodeOption;
+	| IdentityNodeOption
+	| BranchNodeOption
+	| PromptNodeOption;

@@ -1,5 +1,5 @@
 import { Handle, Position, type NodeProps } from "@xyflow/react";
-import type { BranchNodeOption } from "./types";
+import type { BranchNodeOption } from "../types";
 
 export function BranchNode({ data }: NodeProps<BranchNodeOption>) {
 	return (
@@ -8,12 +8,12 @@ export function BranchNode({ data }: NodeProps<BranchNodeOption>) {
 			<div className="flex flex-col space-y-2">
 				{data.payload.branches.map((branch, index) => (
 					<div
-						key={branch.label || branch.condition || index}
+						key={branch.node || branch.condition || index}
 						className="flex items-center space-x-2"
 					>
 						<div className="text-xs text-gray-500 flex-1">
 							{branch.condition}{" "}
-							<span className="text-gray-700">{branch.label}</span>
+							<span className="text-gray-700">{branch.node}</span>
 						</div>
 						<Handle
 							type="source"
