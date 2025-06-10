@@ -17,7 +17,6 @@ const PromptNodeConfig: React.FC<PromptNodeConfigProps> = ({
 	);
 
 	return (
-		// TODO 帮我写一个组件来替代这段代码
 		<div style={{ marginTop: 12 }}>
 			<label htmlFor={`prompt-template-${nodeId}`}>提示词模板:</label>
 			<textarea
