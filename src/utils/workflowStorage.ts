@@ -24,7 +24,7 @@ export function getInitialNodeData(type?: string): any {
 				payload: {
 					input: {
 						kind: "Single",
-						data: { type: "Text", value: "你好，世界" },
+						data: { type: "Text", value: "hello" },
 					},
 				},
 			};
