@@ -28,7 +28,7 @@ export type OutputNodeData = {
 };
 
 export type BranchNodeData = {
-	branches: { condition: string; node: string }[];
+	branches: { condition: string; nodeId: string }[];
 	default: string;
 };
 

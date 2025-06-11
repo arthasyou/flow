@@ -18,7 +18,7 @@ const BranchNodeConfig: React.FC<BranchNodeConfigProps> = ({
 
 	const updateBranch = (
 		index: number,
-		field: "condition" | "node",
+		field: "condition" | "nodeId",
 		value: string,
 	) => {
 		const newBranches = [...branches];
@@ -67,8 +67,8 @@ const BranchNodeConfig: React.FC<BranchNodeConfigProps> = ({
 						/>
 						<input
 							type="text"
-							value={branch.node}
-							onChange={(e) => updateBranch(index, "node", e.target.value)}
+							value={branch.nodeId}
+							onChange={(e) => updateBranch(index, "nodeId", e.target.value)}
 							onBlur={handleBlur}
 							placeholder="目标节点ID"
 							style={{ flex: 1 }}

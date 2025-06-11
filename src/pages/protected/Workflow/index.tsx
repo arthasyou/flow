@@ -1,21 +1,26 @@
-import { getGraphDetailApi } from "@/api/graphApi";
-import WorkflowCanvas from "@/components/Workflow/WorkflowCanvas";
-import { useNavigate, useParams } from "react-router";
-// Update the import path if the file is located elsewhere, for example:
+import { useNavigate } from "react-router";
 import { useFetchData } from "@/hooks/useFetchData";
-
-import { getGraphSummaryApi } from "@/api/graphApi";
-import { useCallback } from "react";
+import { getGraphSummaryApi, createGraphApi } from "@/api/graphApi";
 
 export function WorkflowListPage() {
 	const navigate = useNavigate();
 	const { Render, run } = useFetchData(getGraphSummaryApi);
 
+	const handleCreate = async () => {
+		await createGraphApi({ name: "新工作流", description: "描述内容" });
+		run(); // 刷新列表
+	};
+
 	return (
 		<Render>
 			{(data) => (
 				<div style={{ padding: "2rem" }}>
-					<button onClick={() => run()}>刷新</button>
+					<button type="button" onClick={() => run()}>
+						刷新
+					</button>
+					<button type="button" onClick={handleCreate}>
+						创建
+					</button>
 					<h2>Workflow 列表</h2>
 					<ul>
 						{data?.map((wf) => (
@@ -24,6 +29,7 @@ export function WorkflowListPage() {
 								style={{ marginBottom: "1rem", listStyle: "none" }}
 							>
 								<button
+									type="button"
 									style={{
 										width: "100%",
 										textAlign: "left",
@@ -49,28 +55,6 @@ export function WorkflowListPage() {
 							</li>
 						))}
 					</ul>
-				</div>
-			)}
-		</Render>
-	);
-}
-
-export function WorkflowPage() {
-	const { id } = useParams();
-	const fetchGraph = useCallback(() => getGraphDetailApi(id!), [id]);
-	const { Render } = useFetchData(fetchGraph);
-	return (
-		<Render>
-			{(data) => (
-				<div style={{ height: "100vh" }}>
-					<h3 style={{ padding: "1rem" }}>当前 Workflow ID: {id}</h3>
-					<WorkflowCanvas
-						initialData={{
-							nodes: data?.nodes ?? [],
-							edges: data?.edges ?? [],
-						}}
-						uuid={id!}
-					/>
 				</div>
 			)}
 		</Render>
