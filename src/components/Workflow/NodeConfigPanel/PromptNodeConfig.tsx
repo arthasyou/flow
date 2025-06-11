@@ -1,4 +1,4 @@
-import useNodePayloadField from "@/hooks/useNodePayloadField";
+import { useNodePayloadField } from "@/hooks/useNodePayload";
 import type { PromptNodeData } from "../types";
 
 interface PromptNodeConfigProps {

@@ -25,6 +25,5 @@ export interface DataCollection {
 }
 
 // DataPayload 类型：单一或集合
-export type DataPayload =
-	| { kind: "Single"; data: SingleData }
-	| { kind: "Collection"; data: DataCollection };
+export type DataPayload = { kind: "Single"; data: SingleData };
+// | { kind: "Collection"; data: DataCollection };

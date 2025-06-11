@@ -1,10 +1,10 @@
 import { useReactFlow } from "@xyflow/react";
+import type { BranchNodeData } from "../types";
+import { useState } from "react";
 
 interface BranchNodeConfigProps {
 	nodeId: string;
-	payload: {
-		branches: { condition: string; node: string }[];
-	};
+	payload: BranchNodeData;
 }
 
 const BranchNodeConfig: React.FC<BranchNodeConfigProps> = ({
@@ -13,35 +13,55 @@ const BranchNodeConfig: React.FC<BranchNodeConfigProps> = ({
 }) => {
 	const { updateNodeData } = useReactFlow();
 
+	const [branches, setBranches] = useState(payload.branches);
+	const [defaultTarget, setDefaultTarget] = useState(payload.default);
+
 	const updateBranch = (
 		index: number,
 		field: "condition" | "node",
 		value: string,
 	) => {
-		const newBranches = [...payload.branches];
+		const newBranches = [...branches];
 		newBranches[index] = {
 			...newBranches[index],
 			[field]: value,
 		};
+		setBranches(newBranches);
+	};
+
+	const handleBlur = () => {
 		updateNodeData(nodeId, {
 			payload: {
 				...payload,
-				branches: newBranches,
+				branches,
+				default: defaultTarget,
 			},
 		});
 	};
 
 	return (
 		<div style={{ marginTop: 12 }}>
+			<div>默认分支目标节点ID:</div>
+			<input
+				type="text"
+				id={`branch-default-${nodeId}`}
+				value={defaultTarget}
+				onChange={(e) => setDefaultTarget(e.target.value)}
+				onBlur={handleBlur}
+				placeholder="默认分支目标节点ID"
+				style={{ width: "100%", marginTop: 4 }}
+			/>
+
 			<div>条件分支配置:</div>
-			{payload.branches.map((branch, index) => {
-				const key = `${branch.condition}-${branch.node}-${index}`;
+			{branches.map((branch, index) => {
+				const key = index;
 				return (
 					<div key={key} style={{ display: "flex", gap: 8, marginTop: 8 }}>
 						<input
 							type="text"
 							value={branch.condition}
 							onChange={(e) => updateBranch(index, "condition", e.target.value)}
+							onBlur={handleBlur}
 							placeholder="条件表达式"
 							style={{ flex: 1 }}
 						/>
@@ -49,6 +69,7 @@ const BranchNodeConfig: React.FC<BranchNodeConfigProps> = ({
 							type="text"
 							value={branch.node}
 							onChange={(e) => updateBranch(index, "node", e.target.value)}
+							onBlur={handleBlur}
 							placeholder="目标节点ID"
 							style={{ flex: 1 }}
 						/>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useReactFlow } from "@xyflow/react";
 
-function useNodePayloadField<
+export function useNodePayloadField<
 	T = string,
 	P extends Record<string, T> = Record<string, T>,
 >(nodeId: string, payload: P, field: keyof P) {
@@ -30,5 +30,3 @@ function useNodePayloadField<
 
 	return { localValue, handleChange, handleBlur };
 }
-
-export default useNodePayloadField;

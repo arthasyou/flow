@@ -29,6 +29,7 @@ export type OutputNodeData = {
 
 export type BranchNodeData = {
 	branches: { condition: string; node: string }[];
+	default: string;
 };
 
 export type PromptNodeData = {

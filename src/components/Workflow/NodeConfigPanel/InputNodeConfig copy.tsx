@@ -1,20 +1,16 @@
-import { useReactFlow } from "@xyflow/react";
-import type { InputNodeData } from "../types";
+import { useReactFlow, useStore } from "@xyflow/react";
+import type { InputNodeOption } from "../types";
 import type React from "react";
 import { useState, useEffect } from "react";
 
-interface InputNodeConfigProps {
-	nodeId: string;
-	payload: InputNodeData;
-}
-
-const InputNodeConfig: React.FC<InputNodeConfigProps> = ({
-	nodeId,
-	payload,
-}) => {
+const InputNodeConfig: React.FC<{ nodeId: string }> = ({ nodeId }) => {
 	const { updateNodeData } = useReactFlow();
 
-	const inputValue = payload.input.data?.value?.toString() ?? "";
+	const inputValue = useStore((state) => {
+		const node = state.nodes.find((n) => n.id === nodeId) as InputNodeOption;
+
+		return node?.data.payload.input.data?.value?.toString();
+	});
 
 	const [localValue, setLocalValue] = useState(inputValue);
 

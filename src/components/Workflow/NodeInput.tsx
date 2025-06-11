@@ -36,18 +36,18 @@ const NodeInput: React.FC<NodeInputProps> = ({ input }) => {
 		}
 	}
 
-	if (input.kind === "Collection") {
-		const c = input.data;
-		return (
-			<div>
-				<p>Texts: {c.texts.length}</p>
-				<p>Files: {c.files.length}</p>
-				<p>Image Matrices: {c.image_matrices.length}</p>
-				<p>Audio Features: {c.audio_features.length}</p>
-				<p>Video Frames: {c.video_frames.length}</p>
-			</div>
-		);
-	}
+	// if (input.kind === "Collection") {
+	// 	const c = input.data;
+	// 	return (
+	// 		<div>
+	// 			<p>Texts: {c.texts.length}</p>
+	// 			<p>Files: {c.files.length}</p>
+	// 			<p>Image Matrices: {c.image_matrices.length}</p>
+	// 			<p>Audio Features: {c.audio_features.length}</p>
+	// 			<p>Video Frames: {c.video_frames.length}</p>
+	// 		</div>
+	// 	);
+	// }
 
 	return <p>Unknown input</p>;
 };
